@@ -1,0 +1,29 @@
+<ion-view title="Messages">
+
+<ion-content has-bouncing="false" class="has-header fondation" ng-class="{'has-loading': data.error}" delegate-handle="myScroll">
+  <!-- ERREUR -->
+  <!-- <div class="erreur" ng-if="data.error">
+      {{data.error}}
+  </div> -->
+<ion-refresher class="refresher"  ng-if="profil.user" on-refresh="refresh()"
+                     pulling-text="Actualisé le {{profil.user.dateConnexion}}"
+                     refreshing-text="{{chargement}} sur 4"
+                     >
+                     
+</ion-refresher>
+<div class="information" ng-if="!(connexion)">no pain no gain</div>
+      <div>{{user.username}}</div>
+  <div ng-repeat="message in messages" class="carte-test">
+    <div class=" no-border intercalaire center" style="border:none;">
+      {{$index + 1}} sur {{messages.length}}
+    </div>
+    <div class="message">
+      <div class="message-interieur" ng-bind-html="message.texte">
+        {{message.texte}}
+      </div>
+    </div>
+  </div>
+      
+  </ion-content>
+</ion-view>
+

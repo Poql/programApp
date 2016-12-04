@@ -1,0 +1,187 @@
+<ion-view title="Profil">
+  <ion-content has-bouncing="false" class="has-header fondation" delegate-handle="myScroll">
+  	<!-- ERREUR -->
+  	<!-- <div class="erreur" ng-if="data.error">
+      {{data.error}}
+  	</div> -->
+<ion-refresher class="refresher"  ng-if="profil.user" on-refresh="refresh()"
+                     pulling-text="Actualisé le {{profil.user.dateConnexion}}"
+                     refreshing-text="{{chargement}} sur 4"
+                     >
+                     
+</ion-refresher>
+<div class="information" ng-if="!(connexion)">no pain no gain</div>
+	 <!-- <div class="intercalaire left-decale">Ma météo</div> -->
+
+	 <!-- <div class="conteneur">
+		<div class="surcouche">
+ 			<div class="meteo">
+ 				<i class="wi {{profil.meteo}} meteo"></i>
+ 			</div>
+			</div>
+	</div> -->
+	<div class="carte-profil-debut" ng-if="connexion">
+		<div class="carte-interieure">
+			<div class="row">
+				<div class="col-40 col center grande center">
+					<div class="conteneur">
+				 			<div class="meteo">
+				 				<i class="wi {{profil.meteo}} meteo"></i>
+				 			</div>
+					</div>
+				</div>
+
+				<div class="col-60 col center grande">
+					<div class="conteneur">
+		              <p class="center important">{{profil.nom}}</p>
+		              <p class="center detail">{{profil.classe}}</p>
+		              <!-- <p class="center detail">
+		              	<div class="absences">
+							{{profil.pdv}}
+						</div>
+						<div class="absences">
+							<i class="icon ion-ios7-heart absences"></i>
+						</div>
+					  </p> -->
+		              <!-- <p class="center detail"><i class="icon ion-heart taille-moyenne"></i> {{profil.pdv}}</p> -->
+		            </div>
+				</div>
+			</div>
+		 
+
+
+		 <!-- <div class="intercalaire left-decale" style="border-top: none">Informations</div> -->
+		 <!-- <div class="bordure" >
+	          <div class="ligne-fin"> 
+	          </div>
+	      </div>
+	  		<div class="rien">
+	    		<div class="row">
+	    			<div class="col center">
+			            {{profil.nom}}
+			            
+			        </div>
+			        
+			        
+		      	</div>
+		    </div>
+
+		    <div class="bordure" >
+	          <div class="ligne-fin"> 
+	          </div>
+	        </div>
+
+		    <div class="rien">
+	    		<div class="row">
+	    			<div class="col center">
+			            {{profil.classe}}
+			       </div>
+			        
+		      	</div>
+		    </div>
+
+		    <div class="bordure" >
+	          <div class="ligne-fin"> 
+	          </div>
+	        </div>
+
+		    <div class="rien">
+		      	<div class="row">
+			        <div class="col center">
+			            <i class="icon ion-heart taille-moyenne"></i> {{profil.pdv}}
+			        </div>
+		      	</div>
+	 		</div>
+
+	 		 <div class="bordure" >
+	          <div class="ligne-fin"> 
+	          </div>
+	      </div> -->
+
+	   
+		<!-- <div class="intercalaire center left-decale">Résumé</div> -->
+			<div class='semestre' ng-repeat="semestre in profil.semestres">
+			      <div class='rien'>
+			      <div class="petit-intercalaire center" ng-show="{{afficherSemestre(semestre)}} && $index < 2">
+			          Semestre {{$index + 1}}
+			      </div>
+			      <div class="petit-intercalaire center" ng-show="{{afficherSemestre(semestre)}} && $index == 2">
+			          UE volantes
+			      </div>
+			    </div>
+			    <div class="rien" ng-repeat="(nom, module) in semestre">
+			    	
+			    	<div class="row fiche">
+			    			<div class="col center col-33">
+					            {{nom}}
+					       </div>
+					       <div class="col center col-33">
+					            {{module.absences}}
+					        </div>
+					        <div class="col center col-33">
+					            {{module.moyenne}}
+					        </div>
+					</div>
+					<div class="bordure">
+						<div ng-class="{'ligne': !($last), 'ligne-fin': $last}">
+						</div>
+					</div>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="petit-intercalaire"></div> -->
+	<!-- <div class="bordure">
+		<div class="ligne-fin">
+		</div>
+	</div> -->
+
+	<div class="carte-profil-milieu" ng-if="connexion">
+		<div class="carte-interieure">
+			<div class="row">
+				<div class="col center col-40 grande">
+					<div class="conteneur">
+						<div class="absences">
+							<i class="icon ion-ios-heart meteo"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col col-60 center grande">
+					<div class="conteneur">
+						<p class="important center">{{profil.pdv}} PV</p>
+						<p class="detail center">{{absences(profil.pdv)}}</p>		
+					</div> 
+				</div>
+			</div>
+		
+
+			<div class="bordure" >
+		        	<div class="ligne-fin"> 
+		        	</div>
+		    	</div>
+
+			<div class="petit-intercalaire no-border-top center">Absences</div>
+			<div class="rien" ng-repeat="absence in profil.absences">
+		    			<div class="row">
+		    			<div class="col col-60">
+		    				{{absence.matiere}}
+				       </div>
+
+				       <div class="col center col-40">
+				           	{{absence.date.0}}/{{absence.date.1}}
+				        </div>
+				    </div>
+				<div class="bordure-padding" >
+		        	<div class="ligne" ng-hide="{{$last}}"> 
+		        	</div>
+		    	</div>
+		    	<div class="bordure" >
+		        	<div class="ligne-fin" ng-hide="!({{$last}})"> 
+		        	</div>
+		    	</div>
+		    </div>
+		</div>
+    </div>
+
+  </ion-content>
+</ion-view>

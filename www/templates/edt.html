@@ -1,0 +1,96 @@
+<ion-view title="Emploi du temps">
+<!-- 
+
+un jour est de la forme : 
+{
+  date: '', 
+  matieres: [
+              {
+                horaire: h, 
+                nom_matiere: nom, 
+                groupe: g, 
+                type: t, 
+                professeur: p,
+                duree: d, 
+                salle: , 
+                observation: 
+              }, 
+              ...
+            ]
+} 
+
+-->
+<ion-content scrollbar-y="false" has-bouncing="false" class="fondation" delegate-handle="myScroll">
+
+<ion-refresher class="refresher"  ng-if="profil.user" on-refresh="refresh()"
+                     pulling-text="Actualisé le {{profil.user.dateConnexion}}"
+                     refreshing-text="{{chargement}} sur 4"
+                     >
+                     
+</ion-refresher>
+
+  <div class="information" ng-if="!(connexion)">no pain no gain</div>
+
+  <div ng-repeat="jour in edt" class='carte-test'>
+
+      <!-- INTERCALAIRE -->
+      <div class="intercalaire left-decale">
+        {{jour['date']}}
+      </div>
+
+      <!-- LIGNES  -->
+      <div class="carte">
+        <div ng-repeat="matiere in jour.matieres" class="rien">
+          <!-- <div ng-class="{'show': {{matiere.dejeuner}}}" class="petit-intercalaire hidden">
+              déjeuner
+          </div> -->
+          <div class="bordure" >
+            <div class="ligne-edt dejeuner" ng-show="{{matiere.dejeuner}} && !({{$first}})"> 
+            </div>
+          </div>
+
+          <a ng-click="selectionEdt(matiere); showMatiere()"  class="row" >
+            
+          <!-- <a ng-click="selection(matiere)" href="#/tab/notes" href="#/tab/edt/{{matiere.professeur}}" class="row" ng-class="{'dejeuner': {{matiere.dejeuner}} && {{$index}} != 0}"> ng-click="selectionEdt(matiere)" -->
+            <!-- CASE HORAIRE -->
+            <div class="col center grande col-40">
+
+              <div class="cercle" ng-class="{'c-app': quiEst(matiere.type) == 'Application', 'c-cours': quiEst(matiere.type) == 'Cours', 'c-tp': quiEst(matiere.type) == 'Travaux-pratiques', 'autre': quiEst(matiere.type) == 'Autre', 'c-composition' : quiEst(matiere.type) == 'Composition' }">
+
+                <div class="conteneur">
+                  <p class="horaire">{{matiere.horaire}}</p>
+                  <p class="duree">{{matiere.duree}}</p>
+                </div>
+
+              </div>
+
+            </div>
+            <!-- CASE INFORMATIONS -->
+            <div class="col center grande col-60">
+
+              <div class="conteneur">
+                <p class="important">{{matiere.groupe}} {{matiere.nom_matiere}}</p>
+                <p class="detail" ng-if="matiere.professeur != vide ">{{matiere.professeur}}</p>
+                <p class="detail" ng-if="matiere.salle != vide ">{{matiere.salle}}</p>
+              </div>
+
+            </div>
+          
+          </a>
+          <div class="bordure" >
+            <div class="ligne-edt" ng-hide="{{$last}}"> 
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  
+  <ion-infinite-scroll
+    ng-if="!noMoreData"
+    on-infinite="loadMore()"
+    distance="3%">
+  </ion-infinite-scroll>
+</ion-content>
+</ion-view>

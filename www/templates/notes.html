@@ -1,0 +1,59 @@
+<ion-view title="Notes">
+
+  <ion-content has-bouncing="false" class="has-header fondation" delegate-handle="myScroll">
+  <!-- ERREUR -->
+  <!-- <div class="erreur" ng-if="data.error">
+      {{data.error}}
+  </div> -->
+  <ion-refresher class="refresher"  ng-if="profil.user" on-refresh="refresh()"
+                     pulling-text="Actualisé le {{profil.user.dateConnexion}}"
+                     refreshing-text="{{chargement}} sur 4"
+                     >
+                     
+</ion-refresher>  
+  <div class="information" ng-if="!(connexion)">no pain no gain</div>
+  <div class='rien' ng-repeat="semestre in notes">
+      
+      <div class="grand-intercalaire" ng-show="{{afficherSemestre(semestre)}} && $index < 2">
+          Semestre {{$index + 1}}
+      </div>
+      <div class="grand-intercalaire" ng-show="{{afficherSemestre(semestre)}} && $index == 2">
+          UE volantes
+      </div>
+
+      <div class="carte-test" ng-repeat="(nom_module, module) in semestre">
+        <div class="intercalaire carte">
+          <a class="row" ng-click="selectionNotes(module); showModule()"  style="background: -webkit-linear-gradient(-45deg, #e4dfdf 0%,#eeeeee 100%);  border: none;">
+        <div class="col col-50 center">
+            {{nom_module}}
+        </div>
+        <div class="col col-50 center">
+            {{module.moyenne}}
+        </div>
+        </a>
+      </div>
+      <div class="rien"  ng-repeat="matiere in module.matieres">
+        <a class="row" ng-click="selectionNotes(matiere); showNote()" >
+
+            <div class="col col-75 left-decale ">
+                <div class="rien">
+                  {{matiere.nom_matiere}}
+                </div>
+            </div>
+            <div class="col col-25 center">
+              <div class="rien">
+                  {{matiere.note}}
+              </div>
+            </div>
+
+        </a>
+        <div class="bordure-padding" >
+          <div class="ligne" ng-hide="{{$last}}"> 
+          </div>
+        </div>
+      </div>
+      </div>
+      
+  </div>
+  </ion-content>
+</ion-view>

@@ -51,7 +51,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
-
+    .state('tab.messages', {
+      url: "/messages",
+      views: {
+        'tab-messages' :{
+          templateUrl: "templates/messages.html",
+          // controller: 'messagesCtrl'
+          controller: "messagesCtrl"
+        }
+      }
+    })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/profil');
 

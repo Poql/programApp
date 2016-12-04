@@ -250,3 +250,15 @@ angular
   
   
 })
+.controller('messagesCtrl', function($scope, Data,$ionicScrollDelegate){
+  $scope.$watch( function () { return Data.data.messages; }, function ( data ) {
+   // handle it here. e.g.:
+      $scope.messages = data
+      // $scope.loadMore();
+  });
+  $scope.$on("$destroy", function() {
+       var delegate = $ionicScrollDelegate.$getByHandle('myScroll');
+       delegate. forgetScrollPosition();
+   });
+  
+})

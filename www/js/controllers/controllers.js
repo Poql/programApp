@@ -67,7 +67,7 @@ angular
     //affiche un logo de chargement et empeche toutes interrations
     $ionicLoading.show({
       content: ''+ $scope.chargement,
-      template: '<i style="background : none" class="icon ion-loading-c">'+'</i>',
+      template: '<ion-spinner></ion-spinner>',
         animation: 'fade-in',
         showBackdrop: false,
         maxWidth: 200,

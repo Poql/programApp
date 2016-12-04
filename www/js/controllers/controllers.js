@@ -262,3 +262,157 @@ angular
    });
   
 })
+.controller('edtCtrl', function($scope, Data, $anchorScroll,$rootScope, CONSTANTES, $ionicModal, $ionicScrollDelegate){
+  $scope.$on("$destroy", function() {
+       var delegate = $ionicScrollDelegate.$getByHandle('myScroll');
+       delegate. forgetScrollPosition();
+   });
+
+  $ionicModal.fromTemplateUrl('templates/matiere.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalMatiere = modal;
+  });
+
+  $scope.showMatiere = function(){
+    $scope.modalMatiere.show()
+  }
+
+  $scope.closeMatiere = function(){
+    $scope.modalMatiere.hide()
+  }
+
+  $scope.$watch( function () { return Data.data.edt; }, function ( edt ) {
+     // handle it here. e.g.:
+
+     $scope.edt = []
+     $scope.noMoreData = false
+     $scope.edtTotal = edt
+     $scope.loadMore()
+  });
+
+  $scope.$on('$stateChangeSuccess', function() {
+
+    $scope.loadMore();
+  });
+  
+  $scope.matiereSelectionnee = null
+    $scope.edtTotal = []
+
+    $scope.selection = function(element){
+
+      $scope.matiereSelectionnee = element
+    }
+
+
+  $scope.quiEst = function(nom){
+
+    if(nom == 'Application' || nom == 'Cours' || nom == 'Travaux-pratiques' || nom == 'Composition'){
+      return nom
+    }
+    else{
+      return 'Autre'
+    }
+  }
+
+  $scope.vide = CONSTANTES.INDICATEUR_CASE_VIDE
+
+  // INFINITE SCROLL
+
+  // $scope.edt = []
+
+  $scope.more = function(){
+    var test_longueur = true
+    var i = 0
+    while(i < CONSTANTES.INFINITE_SCROLL_N && test_longueur){
+      if($scope.edt.length == $scope.edtTotal.length){
+        $scope.noMoreData = true
+        test_longueur = false
+      }
+      else{
+
+        $scope.edt.push($scope.edtTotal[$scope.edt.length])
+      }
+      i++
+      
+    } 
+  }
+
+  $scope.loadMore = function(){
+
+    // if($scope.edt.length == $scope.edtTotal.length){
+    //  $scope.noMoreData = true
+    // }
+    // else{
+    //  $scope.edt.push($scope.edtTotal[$scope.edt.length])
+    // }
+    
+    $scope.more()
+    $rootScope.$broadcast('scroll.infiniteScrollComplete');
+  }
+
+  $scope.getJourHeight = function(item){
+    var n = item.matieres.length * 90 + 45
+
+    return n
+  }
+
+  $scope.getMatiereHeight = function(){
+    return 45
+  }
+
+  $scope.matiere = {date:""}
+  $scope.matiereAnterieure = function(matiere){
+    var b = matiere.date == $scope.matiere.date
+    if(!b){
+      $scope.matiere = matiere
+    }
+
+    return !b
+  }
+  
+})
+
+.controller('notesCtrl', function($scope, Data, $rootScope, $ionicScrollDelegate, $ionicModal){
+  $scope.$watch( function () { return Data.data.notes; }, function ( notes ) {
+   // handle it here. e.g.:
+      $scope.notes = notes
+
+
+
+  });
+  $scope.$on("$destroy", function() {
+       var delegate = $ionicScrollDelegate.$getByHandle('myScroll');
+       delegate. forgetScrollPosition();
+   });
+
+  $ionicModal.fromTemplateUrl('templates/matiere_notes.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalNote = modal;
+  });
+  $ionicModal.fromTemplateUrl('templates/module.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.modalModule = modal;
+  });
+
+
+  $scope.showNote = function(){
+
+    $scope.modalNote.show()
+  }
+
+  $scope.closeNote = function(){
+    $scope.modalNote.hide()
+  }
+
+  $scope.showModule = function(){
+
+    $scope.modalModule.show()
+  }
+
+  $scope.closeModule = function(){
+    $scope.modalModule.hide()
+  }  
+})

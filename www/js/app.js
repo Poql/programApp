@@ -61,6 +61,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       }
     })
+    .state('tab.edt', {
+      url: "/edt",
+      views: {
+        'tab-edt' :{
+          templateUrl: "templates/edt.html",
+           // controller: 'edtCtrl'
+           controller: "edtCtrl"
+          
+        }
+      }
+    })
+    .state('tab.notes', {
+      url: "/notes",
+      views: {
+        'tab-notes' :{
+          templateUrl: "templates/notes.html",
+          // controller: 'notesCtrl'
+          controller: "notesCtrl"
+        }
+      }
+    })
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/profil');
 

@@ -56,8 +56,12 @@ angular
     $scope.modal = modal;
   });
 
-
-
+  $rootScope.showAlert = function(titre, message) {
+    var alertCallback = function(){
+      console.log("Ah une alerte !")
+    }
+    navigator.notification.alert(message, alertCallback, titre)
+  }
 
   $rootScope.show = function() {
     //affiche un logo de chargement et empeche toutes interrations
@@ -163,19 +167,6 @@ angular
     navigator.notification.alert(CONSTANTES.ERR_SEMESTRE_MESS, function(){}, CONSTANTES.ERR_SEMESTRE_TITRE)
   })
 
-  $rootScope.showAlert = function(titre, message) {
-    //affiche une alerte
-    // var alertPopup = $ionicPopup.alert({
-    //  title: titre,     
-    //  template: '<p class="center">' + message + '</p>', 
-    //  okType: 'button-clear button-positive'
-    // });
-    var alertCallback = function(){
-      console.log("Ah une alerte !")
-    }
-    navigator.notification.alert(message, alertCallback, titre)
-    
-  }
 
   //http://stackoverflow.com/questions/14527377/handling-data-binding-in-angularjs-services
   // $scope.$watch( function () { return Data.data.messages; }, function ( data ) {

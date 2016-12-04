@@ -1,0 +1,45 @@
+ <div class="modal">
+  
+  <ion-content scroll="false" class="login-content">
+
+  <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">fermer</button>
+    </div>
+    <h1 class="login center">
+      BVE App
+    </h1>
+    <form name="login" ng-submit="doLogin()" novalidate>
+
+        <!-- IDENTIFIANT -->
+            <label  class="item item-input">
+              <input placeholder="Identifiant" autocapitalize="none" type="text" ng-minlength="1" name="username" ng-model="loginData.login" spellcheck="false" autocorrect="off" autocomplete="off" maxlength="50" required>
+            </label>
+            
+            <div class="bordure">
+              <div class="ligne"></div>
+            </div>
+        <!-- MOT DE PASSE -->
+
+            <label class="item item-input">
+              <!-- <span class="input-label">Mot de passe</span> -->
+              <input placeholder="Mot de passe" maxlength="25" autocapitalize="none" type="password" name="password" ng-model="loginData.password" ng-minlength="1" spellcheck="false" autocorrect="off" autocomplete="off" required>
+            </label>
+
+
+
+            <div class="center">
+              <!-- <button type="submit" class="icon ion-ios7-play button button-clear login-button" ng-disabled="login.$invalid">
+              </button> -->
+              <button type="submit" class="center button button-clear login-button" style="padding: 0; margin-left: 0; "ng-disabled="login.$invalid">
+                connexion
+              </button>
+            </div>
+        
+    </form>
+    
+  </ion-content>
+</div>
+
+
+
+ 

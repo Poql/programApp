@@ -1,0 +1,152 @@
+<div class="modal">
+
+
+
+<ion-content has-bouncing="false" class="surcouche">
+  <div class="buttons">
+     <button class="button button-clear" ng-click="closeMatiere()">Ok</button>
+  </div>
+
+  <div class="carte-test">
+    <!-- <div class="intercalaire left-decale">
+      {{matiereEdt.nom_matiere}}
+    </div> -->
+    <h1 class="matiere">
+      {{matiereEdt.nom_matiere}}
+    </h1>
+    <!-- <h2 class="matiere">
+      {{matiere.date}}
+    </h2> -->
+
+    
+    <div class="row">
+      <div class="col left-decale col-60">
+        Classe 
+      </div>
+      <div class="col center col-40">
+        {{matiereEdt.classe}}
+      </div>
+    </div>
+    <div class="bordure-padding">
+      <div class="ligne">
+      </div>
+    </div>
+
+    <div class="rien">
+      <div class="row">
+        <div class="col left-decale col-60">
+          Durée
+        </div>
+        <div class="col center col-40">
+          {{matiereEdt.horaire}} - {{matiereEdt.fin}}
+        </div>
+      </div>
+    </div>
+
+    <div class="bordure-padding">
+      <div class="ligne">
+      </div>
+    </div>
+
+    <!-- <div class="rien">
+      <div class="row">
+        <div class="col left-decale col-60">
+          Fin 
+        </div>
+        <div class="col center col-40">
+          {{matiereEdt.fin}}
+        </div>
+      </div>
+    </div>
+
+    <div class="bordure-padding">
+      <div class="ligne">
+      </div>
+    </div> -->
+
+    <div class="rien">
+      <div class="row">
+        <div class="col left-decale col-60">
+          Type
+        </div>
+        <div class="col center col-40">
+          {{matiereEdt.type}}
+        </div>
+      </div>
+    </div>
+
+    <div class="bordure-padding">
+      <div class="ligne">
+      </div>
+    </div>
+
+    <div class="rien">
+      <div class="row">
+        <div class="col left-decale col-60">
+          Groupe
+        </div>
+        <div class="col center col-40">
+          <div class="rien" ng-if="matiereEdt.groupe == ''">•</div>
+          {{matiereEdt.groupe}}
+        </div>
+      </div>
+    </div>
+
+    <div class="bordure-padding">
+      <div class="ligne">
+      </div>
+    </div>
+
+    <div class="rien">
+      <div class="row">
+        <div class="col left-decale col-60">
+          Professeur
+        </div>
+        <div class="col center col-40">
+          {{matiereEdt.professeur}}
+        </div>
+      </div>
+    </div>
+
+    <div class="bordure-padding">
+      <div class="ligne">
+      </div>
+    </div>
+
+    <div class="rien">
+      <div class="row">
+        <div class="col left-decale col-60">
+          Salle 
+        </div>
+        <div class="col col-40 center">
+          {{matiereEdt.salle}}
+        </div>
+      </div>
+    </div>
+
+    <div class="bordure-padding">
+      <div class="ligne">
+      </div>
+    </div>
+
+    <div class="rien">
+      <div class="row">
+        <div class="col left-decale col-60">
+          Observation 
+        </div>
+        <div class="col center col-40">
+          {{matiereEdt.observation}}
+        </div>
+      </div>
+    </div>
+
+    <div class="bordure">
+      <div class="ligne-fin">
+      </div>
+    </div>
+
+  </div>
+  
+  
+  </ion-content>
+</div>

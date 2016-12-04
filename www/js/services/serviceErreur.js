@@ -44,8 +44,7 @@ angular.module("ServiceErreur", ["ServiceConstantes"])
 	this.erreurLogin = function(){
 		console.log("ERREUR DETECTEE")
 
-		$rootScope.showAlert(CONSTANTES.IDENTIFIANTS_ERR_TITRE, CONSTANTES.IDENTIFIANTS_ERR)			   						
-		// this.data.error = message_erreur	
+		$rootScope.showAlert(CONSTANTES.IDENTIFIANTS_ERR_TITRE, CONSTANTES.IDENTIFIANTS_ERR)
 	}
 
 	this.erreurTraitement = function(error, data){

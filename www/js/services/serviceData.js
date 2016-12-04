@@ -247,13 +247,6 @@ angular.module('ServiceData', ['ServiceRequetes', 'ServiceAnnexes', 'ServiceStor
 		gestionErreur.error(error, dataHTML, type)
 	}
 
-	// this.identifiantsError = function(){
-	// 	console.log("Identifiants incorrects")
-	// 	this.fin()
-
-	// 	$rootScope.showAlert(CONSTANTES.IDENTIFIANTS_ERR_TITRE, CONSTANTES.IDENTIFIANTS_ERR)			   						
-	// }
-
 	this.succes = function(user){
 		//enregistre le profil et les data dans le dur à l'aide du service localData
 		//si l'attribut user est donné, il est ajouté à l'attribut profil avant que celui ci soit enregistré

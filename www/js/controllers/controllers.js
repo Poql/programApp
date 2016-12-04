@@ -167,37 +167,16 @@ angular
     navigator.notification.alert(CONSTANTES.ERR_SEMESTRE_MESS, function(){}, CONSTANTES.ERR_SEMESTRE_TITRE)
   })
 
-
-  //http://stackoverflow.com/questions/14527377/handling-data-binding-in-angularjs-services
-  // $scope.$watch( function () { return Data.data.messages; }, function ( data ) {
- //    // handle it here. e.g.:
- //     $scope.messages = data
-
-  // });
-  // $scope.$watch( function () { return Data.data.edt; }, function ( edt ) {
- //    // handle it here. e.g.:
- //     $scope.edt = edt
-
-  // });
-  // $scope.$watch( function () { return Data.data.notes; }, function ( notes ) {
- //    // handle it here. e.g.:
- //     $scope.notes = notes
-
-  // });
   $scope.$watch( function () { return Data.profil; }, function ( profil ) {
-   // handle it here. e.g.:
       $rootScope.profil = profil
   });
 
   $scope.$watch( function () { return Data.connexion; }, function ( connexion ) {
-   // handle it here. e.g.:
       $rootScope.connexion = connexion
   });
 
   $scope.$watch( function () { return Data.numChargement; }, function ( chargement ) {
-      // $rootScope.chargement = CONSTANTES.CHARGEMENT[chargement]
       $rootScope.chargement = chargement
-
   });
 
   $rootScope.afficherSemestre = function(semestre){
@@ -206,7 +185,6 @@ angular
         return true
       }
     }
-
     return false
   }
   //INITIALISATION DONNEES ROOTSCOPE
